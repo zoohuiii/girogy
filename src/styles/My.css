@@ -1,0 +1,535 @@
+.my-page {
+  padding: 16px;
+  padding-bottom: calc(16px + 70px + env(safe-area-inset-bottom));
+  max-width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.my-header {
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 0 4px;
+}
+
+.my-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.my-subtitle {
+  font-size: 13px;
+  color: #777;
+}
+
+.my-section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.user-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-info-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.user-info-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.user-info-input {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.user-info-input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  font-size: 13px;
+  color: #777;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* 가족 구성원 목록 */
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  cursor: grab;
+  user-select: none;
+  position: relative;
+}
+
+.member-item:active {
+  cursor: grabbing;
+}
+
+.member-item:hover {
+  background-color: #e9ecef;
+}
+
+.member-item.dragging {
+  opacity: 0.6;
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  border-color: #4a90e2;
+  background-color: #e3f2fd;
+  z-index: 10;
+}
+
+.member-item.drag-over {
+  border: 2px solid #4a90e2;
+  background-color: #e3f2fd;
+  transform: scale(1.02);
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
+}
+
+.member-item.drag-over::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 8px;
+  border: 2px solid #4a90e2;
+  animation: pulse-border 1s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.01);
+  }
+}
+
+.member-avatar-small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-avatar-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder-small {
+  font-size: 18px;
+  font-weight: 600;
+  color: #666;
+}
+
+.member-info-small {
+  flex: 1;
+  min-width: 0;
+}
+
+.member-name-small {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.member-relation-small {
+  font-size: 13px;
+  color: #777;
+}
+
+.member-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.edit-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #4a90e2;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.edit-button:hover {
+  background-color: #e3f2fd;
+}
+
+.delete-button-small {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #f44336;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.delete-button-small:hover {
+  background-color: #ffebee;
+}
+
+.add-member-button-small {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px dashed #4a90e2;
+  background-color: #f0f7ff;
+  color: #4a90e2;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-member-button-small:hover {
+  background-color: #e3f2fd;
+  border-color: #1976d2;
+}
+
+/* 공동작업 섹션 */
+.invite-link-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.invite-link-button:hover {
+  background-color: #357abd;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.invite-link-button:active {
+  transform: scale(0.98);
+}
+
+/* 앱 정보 */
+.app-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* 운동 관리 섹션 */
+.section-header-with-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.add-exercise-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-exercise-button:hover {
+  background-color: #357abd;
+}
+
+.exercise-management {
+  margin-top: 16px;
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exercise-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.exercise-item:hover {
+  background-color: #e9ecef;
+}
+
+.exercise-name {
+  font-size: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.exercise-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.exercise-edit-button,
+.exercise-delete-button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.exercise-edit-button {
+  background-color: #e0e0e0;
+  color: #4a4a4a;
+}
+
+.exercise-edit-button:hover {
+  background-color: #ccc;
+}
+
+.exercise-delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.exercise-delete-button:hover {
+  background-color: #d32f2f;
+}
+
+.no-exercises {
+  font-size: 14px;
+  color: #999;
+  padding: 12px;
+  text-align: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px dashed #e0e0e0;
+}
+
+/* 모달 스타일 (FamilyMemberSelect와 동일) */
+.member-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.member-modal {
+  width: 100%;
+  max-width: 420px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px 18px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.member-modal h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #222;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.modal-field label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.modal-field input[type="text"],
+.modal-field select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background-color: #f9fafb;
+}
+
+.modal-field input[type="text"]:focus,
+.modal-field select:focus {
+  outline: none;
+  border-color: #2196f3;
+  background-color: #ffffff;
+}
+
+.relation-select-row {
+  display: flex;
+  gap: 8px;
+}
+
+.relation-select-row select {
+  flex: 0 0 120px;
+}
+
+.relation-select-row input[type="text"] {
+  flex: 1;
+}
+
+.avatar-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-avatar.preview {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.member-avatar.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  font-size: 24px;
+  font-weight: 600;
+  color: #666;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.modal-cancel,
+.modal-save {
+  flex: 1;
+  padding: 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-cancel {
+  background-color: #eceff1;
+  color: #455a64;
+}
+
+.modal-save {
+  background-color: #2196f3;
+  color: #ffffff;
+}
+
+.modal-cancel:hover {
+  background-color: #cfd8dc;
+}
+
+.modal-save:hover {
+  background-color: #1976d2;
+}
